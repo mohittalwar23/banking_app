@@ -1,0 +1,19 @@
+<!-- templates/login.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>USER LOGIN</h1>
+<form method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required><br>
+    <input type="submit" id="submit-btn" value="Login">
+
+</form>
+<p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+<!-- templates/signup.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h1>Create an Account NOW!</h1>
+  <form method="post" action="/signup">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <br>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" name="phone_number" required>
+    <br>
+    <label for="gender">Gender:</label>
+    <input type="text" name="gender" required>
+    <br>
+    <label for="address">Address:</label>
+    <input type="text" name="address" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+    <br>
+    <input type="submit" id="submit-btn" value="Create Account">
+  </form>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!-- templates/dashboard.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- Signout Form -->
+    <form method="post" action="/signout">
+        <input type="submit" id="signout-btn" name="signout" value="Sign Out">
+
+    </form>
+
+    <h1>USER DASHBOARD</h1>
+    <p>User ID: {{ user_info.user_id }}</p>
+    <p>Username: {{ user_info.username }}</p>
+    <p>Balance: ${{ user_info.balance }}</p>
+
+
+    <form method="post" action="/deposit/{{ user_info.user_id }}">
+        <label for="amount">Deposit Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+        <input type="submit" name="deposit" value="Deposit">
+    </form>
+
+    <form method="post" action="/withdraw/{{ user_info.user_id }}" onsubmit="return validateWithdraw()">
+        <label for="amount">Withdraw Amount:</label>
+        <input type="number" name="amount" step="0.01" required>
+        <input type="submit" name="withdraw" value="Withdraw">
+    </form>
+
+    <h2>Transaction History</h2>
+    <ul>
+        {% for transaction in user_info.transactions %}
+            <li>{{ transaction.date }} - {{ transaction.type }}: ${{ transaction.amount }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    <!-- Script for JavaScript -->
+    <script>
+        function validateWithdraw() {
+            var withdrawAmount = parseFloat(document.getElementsByName('amount')[1].value);
+            var balance = parseFloat('{{ user_info.balance }}');
+
+            if (withdrawAmount > balance) {
+                alert('Insufficient funds! Please withdraw an amount less than or equal to your balance.');
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+    </script>
+{% endblock %}

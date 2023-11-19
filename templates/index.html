@@ -1,0 +1,14 @@
+<!-- templates/index.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="hero-section">
+    <h1>Welcome to SUMPS BANK</h1>
+    <p>Experience the Future of Banking</p>
+    <div class="cta-buttons">
+      <a href="{{ url_for('signup') }}" class="cta-button">Get Started</a>
+      <a href="{{ url_for('login') }}" class="cta-button">Login</a>
+    </div>
+  </div>
+{% endblock %}
