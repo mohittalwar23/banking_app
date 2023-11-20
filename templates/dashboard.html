@@ -12,7 +12,7 @@
     <h1>USER DASHBOARD</h1>
     <p>User ID: {{ user_info.user_id }}</p>
     <p>Username: {{ user_info.username }}</p>
-    <p>Balance: ${{ user_info.balance }}</p>
+    <p>Balance: Rs {{ user_info.balance }}</p>
 
 
     <form method="post" action="/deposit/{{ user_info.user_id }}">
@@ -30,7 +30,7 @@
     <h2>Transaction History</h2>
     <ul>
         {% for transaction in user_info.transactions %}
-            <li>{{ transaction.date }} - {{ transaction.type }}: ${{ transaction.amount }}</li>
+            <li>{{ transaction.date }} - {{ transaction.type }}: Rs {{ transaction.amount }}</li>
         {% endfor %}
     </ul>
 

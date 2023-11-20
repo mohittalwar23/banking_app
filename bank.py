@@ -74,6 +74,7 @@ class Bank:
         except mysql.connector.Error as err:
             print(f"Error: {err}")
 
+    # Inside the Bank class in bank.py
     def get_statement(self, user_id):
         user_query = "SELECT * FROM users WHERE user_id = %s"
         user_values = (user_id,)
@@ -89,8 +90,10 @@ class Bank:
             transactions_result = self.cursor.fetchall()
 
             if user_result:
-                user_info = {'user_id': user_result[0], 'username': user_result[1], 'balance': user_result[3]}  # Adjust index for balance
-                transaction_history = [{'date': transaction[4], 'type': transaction[2], 'amount': transaction[3]} for transaction in transactions_result]
+                user_info = {'user_id': user_result[0], 'username': user_result[1], 'balance': user_result[3],
+                             'email': user_result[7]}
+                transaction_history = [{'date': transaction[4], 'type': transaction[2], 'amount': transaction[3]} for
+                                       transaction in transactions_result]
                 user_info['transactions'] = transaction_history
                 return user_info
             else:
